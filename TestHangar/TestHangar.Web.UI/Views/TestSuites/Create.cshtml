@@ -1,0 +1,23 @@
+﻿@model TestHangar.Web.UI.Models.CreateTestSuiteViewModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>Import Test Suite</h2>
+
+@using (Html.BeginForm("Create", "TestSuites"))
+{
+    <div>
+        <div>
+            @Html.LabelFor(m => m.Id)
+            @Html.TextBoxFor(m => m.Id)
+        </div>
+        <div>
+            @Html.LabelFor(m => m.Path)
+            @Html.TextBoxFor(m => m.Path)
+        </div>
+        <input type="submit" class="btn btn-primary" value="Import" />
+    </div>
+}

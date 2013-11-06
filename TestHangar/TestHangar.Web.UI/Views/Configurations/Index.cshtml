@@ -1,0 +1,29 @@
+﻿@model IEnumerable<TestHangar.Model.Configuration>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>Configurations</h2>
+
+@if (!string.IsNullOrEmpty(ViewBag.SuccessMessage))
+{
+    <div class="alert alert-success">@ViewBag.SuccessMessage</div>
+}
+
+@Html.ActionLink("Create", "Create", new {}, new { @class = "btn btn-info" })
+
+<br />
+
+<table class="table table-striped">
+    <tr>
+        <th scope="col">Id</th>
+    </tr>
+    @foreach (var ts in Model)
+    {
+        <tr>
+            <td>@Html.ActionLink(ts.Id, "View", "Configurations", new { id = ts.Id }, new {})</td>
+        </tr>
+    }
+</table>

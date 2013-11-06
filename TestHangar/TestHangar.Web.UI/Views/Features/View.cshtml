@@ -1,0 +1,41 @@
+﻿@model TestHangar.Model.Feature
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/Layout.cshtml";
+    
+}
+
+<div class="row">
+    <ol class="breadcrumb">
+        <li>@Html.ActionLink(Model.TestSuiteId, "Index", new { id = Model.TestSuiteId })</li>
+        <li class="active">@Model.Name</li>
+    </ol>
+</div>
+
+<h2>@Model.Name</h2>
+<p>@Model.Description</p>
+
+@foreach (var s in Model.Scenarios)
+{
+    <div class="scenario row">
+        <h3><strong>Scenario: </strong>@s.Name</h3>
+        <div class="col-lg-9">
+            <p>@s.Description</p>
+            <p class="steps">
+                @foreach (var x in s.Steps)
+                {
+                    <strong>@x.Keyword</strong> @x.Name<br />
+                }
+            </p>
+        </div>
+        <div class="col-lg-3 tags">
+            <ul class="list-inline">
+                @foreach (var t in s.Tags ?? new string[] { })
+                {
+                    <li><span class="label label-default">@Html.ActionLink(t.Replace("@", ""), "ByTag", new { id = t })</span></li>
+                }
+            </ul>
+        </div>
+    </div>
+}

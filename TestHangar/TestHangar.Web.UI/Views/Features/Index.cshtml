@@ -1,0 +1,28 @@
+﻿@model System.Collections.Generic.IEnumerable<TestHangar.Model.Feature>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<div class="row">
+    <ol class="breadcrumb">
+        <li>@ViewBag.Id</li>
+    </ol>
+</div>
+
+<h2>Features</h2>
+
+<table class="table table-striped">
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+    </tr>
+    @foreach (var f in Model)
+    {
+        <tr>
+            <td>@Html.ActionLink(string.IsNullOrEmpty(f.Name) ? "[EMPTY]" : f.Name, "View", "Features", new { id = f.Name }, new {})</td>
+            <td>@f.Description</td>
+        </tr>
+    }
+</table>

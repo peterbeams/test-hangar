@@ -1,0 +1,29 @@
+﻿@model System.Collections.Generic.IEnumerable<TestHangar.Model.TestSuite>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>Suites</h2>
+
+@if (!string.IsNullOrEmpty(ViewBag.SuccessMessage))
+{
+    <div class="alert alert-success">@ViewBag.SuccessMessage</div>
+}
+
+@Html.ActionLink("Import Test Suite", "Create", new {}, new { @class = "btn btn-info" })
+
+<br />
+
+<table class="table table-striped">
+    <tr>
+        <th scope="col">Id</th>
+    </tr>
+    @foreach (var ts in Model)
+    {
+        <tr>
+            <td>@Html.ActionLink(ts.Id, "Index", "Features", new { id = ts.Id }, new {})</td>
+        </tr>
+    }
+</table>

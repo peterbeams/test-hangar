@@ -1,0 +1,23 @@
+﻿.scenario h3
+{
+    background-color: #eaeaea;
+    padding: 10px;
+    font-size: 100%;
+    margin-bottom: 0
+}
+
+.scenario .tags 
+{
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 10px;
+    text-align: center;
+}
+
+.scenario .steps {
+    padding: 0px 10px 20px 10px;
+}
+
+.label a { color: #ffffff; }
+
+#navbar { margin-bottom: 0 }

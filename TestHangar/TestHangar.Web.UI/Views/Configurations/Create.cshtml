@@ -1,0 +1,19 @@
+﻿@model TestHangar.Web.UI.Models.CreateConfigurationViewModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>Create Configuration</h2>
+
+@using (Html.BeginForm())
+{
+    <div>
+        <div>
+            @Html.LabelFor(m => m.Id)
+            @Html.TextBoxFor(m => m.Id)
+        </div>
+        <input type="submit" class="btn btn-primary" value="Create" />
+    </div>
+}
