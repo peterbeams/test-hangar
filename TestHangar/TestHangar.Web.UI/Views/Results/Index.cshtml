@@ -1,0 +1,20 @@
+﻿@model System.Collections.Generic.IEnumerable<TestHangar.Model.RunResults.RunResult>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>title</h2>
+
+<table>
+    <tr>
+        <th>Name</th>
+    </tr>
+    @foreach (var r in Model)
+    {
+        <tr>
+            <td>@Html.ActionLink(r.id, "View", "Results", new { id = r.id }, new {})</td>
+        </tr>
+    }
+</table>
