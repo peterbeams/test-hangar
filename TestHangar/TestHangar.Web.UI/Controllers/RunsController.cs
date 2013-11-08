@@ -31,12 +31,12 @@ namespace TestHangar.Web.UI.Controllers
                     CreateNoWindow = true,
                     UseShellExecute = false,
                     FileName = @"C:\ruby193\bin\cucumber.bat",
-                    Arguments = "environment=beta --tags @pre_release_3 --format json",
+                    Arguments = "environment=rpbeta --tags @pre_release_3 --format json",
                     WorkingDirectory = @"C:\Source\oms_acceptance_tests"
                 };
 
             var process = new Process { StartInfo = startInfo };
-            process.OutputDataReceived += (sender, args) => System.IO.File.AppendAllText(@"C:\data\out.txt", args.Data);
+            process.OutputDataReceived += (sender, args) => System.IO.File.AppendAllText(@"C:\data\out.json", args.Data);
             process.ErrorDataReceived += (sender, args) => System.IO.File.AppendAllText(@"C:\data\error.txt", args.Data);
             process.Start();
             process.BeginOutputReadLine();

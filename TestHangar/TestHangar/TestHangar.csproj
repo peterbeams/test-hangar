@@ -159,6 +159,7 @@
     <Compile Include="Gherkin\FeatureFormatter.cs" />
     <Compile Include="Gherkin\GherkinFeatureReader.cs" />
     <Compile Include="Model\Feature.cs" />
+    <Compile Include="Model\RunResults\Embedding.cs" />
     <Compile Include="Model\RunResults\RunResult.cs" />
     <Compile Include="Model\RunResults\Element.cs" />
     <Compile Include="Model\RunResults\Match.cs" />

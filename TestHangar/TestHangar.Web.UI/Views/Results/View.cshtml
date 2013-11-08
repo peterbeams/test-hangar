@@ -6,6 +6,8 @@
     
 }
 
+@{ int imageIndex = 0; }
+
 <h2>RESULTS: @Model.name</h2>
 
 @foreach (var s in Model.elements)
@@ -20,6 +22,18 @@
                     if (!string.IsNullOrEmpty(x.result.error_message))
                     {
                         <pre>@x.result.error_message</pre>
+                    }
+                    if (x.embeddings != null && x.embeddings.Length > 0)
+                    {
+                        <a data-toggle="lightbox" href="#demoLightbox" class="thumbnail screenshot">
+                            <img src="data:image/png;base64,@x.embeddings[0].data"/> 
+                        </a>
+                        
+                        <div id="demoLightbox" class="lightbox hide fade"  tabindex="-1" role="dialog" aria-hidden="true">
+	                        <div class="lightbox-content">
+		                        <img src="data:image/png;base64,@x.embeddings[0].data"/> 
+	                        </div>
+                        </div>
                     }
                 }
             </div>
