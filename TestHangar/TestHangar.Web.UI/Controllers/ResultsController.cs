@@ -17,7 +17,7 @@ namespace TestHangar.Web.UI.Controllers
         public ActionResult View(string id)
         {
             var repo = new ViewModelStore();
-            var model = repo.GetResult();
+            var model = repo.GetResult(id);
             return View(model);
         }
     }

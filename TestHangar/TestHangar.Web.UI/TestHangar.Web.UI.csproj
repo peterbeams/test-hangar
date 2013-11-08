@@ -127,6 +127,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="css\bootstrap-lightbox.min.css" />
+    <Content Include="js\bootstrap-lightbox.min.js" />
     <Content Include="css\bootstrap-theme.css" />
     <Content Include="css\bootstrap-theme.min.css" />
     <Content Include="css\bootstrap.css" />

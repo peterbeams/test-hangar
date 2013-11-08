@@ -112,15 +112,15 @@ namespace TestHangar.Web.UI.Models
         {
             using (var session = store.Value.OpenSession("test-hangar"))
             {
-                return session.Query<RunResult>();
+                return session.Query<RunResult>().OrderBy(o => o.date);
             }
         }
 
-        public RunResult GetResult()
+        public RunResult GetResult(string id)
         {
             using (var session = store.Value.OpenSession("test-hangar"))
             {
-                return session.Query<RunResult>().First();
+                return session.Query<RunResult>().Single(o => o.id == id);
             }
         }
     }

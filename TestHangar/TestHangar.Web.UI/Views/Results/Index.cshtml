@@ -10,11 +10,13 @@
 <table>
     <tr>
         <th>Name</th>
+        <th></th>
     </tr>
     @foreach (var r in Model)
     {
         <tr>
             <td>@Html.ActionLink(r.id, "View", "Results", new { id = r.id }, new {})</td>
+            <td>@r.date</td>
         </tr>
     }
 </table>

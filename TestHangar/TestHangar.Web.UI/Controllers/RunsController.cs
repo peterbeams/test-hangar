@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using Newtonsoft.Json;
@@ -35,22 +36,23 @@ namespace TestHangar.Web.UI.Controllers
                     WorkingDirectory = @"C:\Source\oms_acceptance_tests"
                 };
 
+            var id = Guid.NewGuid().ToString();
+
             var process = new Process { StartInfo = startInfo };
-            process.OutputDataReceived += (sender, args) => System.IO.File.AppendAllText(@"C:\data\out.json", args.Data);
+            var outputPath = string.Format(@"C:\data\out-{0}.json", id);
+
+            process.OutputDataReceived += (sender, args) => System.IO.File.AppendAllText(outputPath, args.Data);
             process.ErrorDataReceived += (sender, args) => System.IO.File.AppendAllText(@"C:\data\error.txt", args.Data);
             process.Start();
             process.BeginOutputReadLine();
             process.WaitForExit();
 
-            return View();
-        }
-
-        public ActionResult LoadResult()
-        {
+            Thread.Sleep(5000);
             var reader = new RunResultsReader();
             var raven = new RavenClient();
-            raven.Store(reader.Load(@"C:\data\out.json"));
-            return Content("Done");
+            raven.Store(reader.Load(outputPath));
+
+            return RedirectToAction("Index", "Results");
         }
     }
 }
