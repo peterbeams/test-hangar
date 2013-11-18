@@ -16,7 +16,7 @@ namespace TestHangar.TestSuites
             var reader = new GherkinFeatureReader();
             var raven = new RavenClient();
 
-            raven.Store(new TestSuite()
+            raven.Store(new TestLibrary()
                 {
                     Id = testSuiteId
                 });

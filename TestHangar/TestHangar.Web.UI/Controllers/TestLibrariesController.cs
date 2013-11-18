@@ -8,7 +8,7 @@ using TestHangar.Web.UI.Models;
 
 namespace TestHangar.Web.UI.Controllers
 {
-    public class TestSuitesController : Controller
+    public class TestLibrariesController : Controller
     {
         public ActionResult Index()
         {

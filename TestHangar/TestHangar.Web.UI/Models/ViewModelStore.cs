@@ -91,11 +91,11 @@ namespace TestHangar.Web.UI.Models
             }
         }
 
-        public IEnumerable<TestSuite> GetTestSuites()
+        public IEnumerable<TestLibrary> GetTestSuites()
         {
             using (var session = store.Value.OpenSession("test-hangar"))
             {
-                return session.Query<TestSuite>();
+                return session.Query<TestLibrary>();
             }
         }
 
