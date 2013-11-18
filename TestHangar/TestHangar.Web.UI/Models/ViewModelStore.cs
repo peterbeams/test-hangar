@@ -7,10 +7,11 @@ using Raven.Client.Document;
 using Raven.Client.Indexes;
 using Raven.Client.Linq;
 using TestHangar.Model;
+using TestHangar.Model.RunResults;
 
 namespace TestHangar.Web.UI.Models
 {
-    public class Result
+    public class ScenariosInTag
     {
         public string Tag { get; set; }
         public ScenarioResult[] Scenarios { get; set; }
@@ -22,14 +23,14 @@ namespace TestHangar.Web.UI.Models
         public string FeatureName { get; set; }
     }
 
-    public class ScenariosByTagIndex : AbstractIndexCreationTask<Feature, Result>
+    public class ScenariosByTagIndex : AbstractIndexCreationTask<Feature, ScenariosInTag>
     {
-        public ScenariosByTagIndex()
+       public ScenariosByTagIndex()
         {
             Map = features => from feature in features
                               from scenario in feature.Scenarios
                               from tag in scenario.Tags
-                              select new Result { 
+                              select new ScenariosInTag { 
                                   Tag = tag, 
                                   Scenarios = new [] { 
                                       new ScenarioResult
@@ -43,7 +44,7 @@ namespace TestHangar.Web.UI.Models
             Reduce = results => from result in results
                                 group result by result.Tag
                                     into x
-                                    select new Result
+                                    select new ScenariosInTag
                                         {
                                             Tag = x.Key,
                                             Scenarios = x.SelectMany(s => s.Scenarios).ToArray()
@@ -81,11 +82,11 @@ namespace TestHangar.Web.UI.Models
             }
         }
 
-        public Result GetScenariosByTag(string id)
+        public ScenariosInTag GetScenariosByTag(string id)
         {
             using (var session = store.Value.OpenSession("test-hangar"))
             {
-                return session.Query<Result>("ScenariosByTagIndex")
+                return session.Query<ScenariosInTag>("ScenariosByTagIndex")
                               .Where(r => r.Tag.Equals(id))
                               .First();
             }
@@ -104,6 +105,22 @@ namespace TestHangar.Web.UI.Models
             using (var session = store.Value.OpenSession("test-hangar"))
             {
                 return session.Query<Configuration>();
+            }
+        }
+
+        public IEnumerable<RunResult> GetResults()
+        {
+            using (var session = store.Value.OpenSession("test-hangar"))
+            {
+                return session.Query<RunResult>().OrderBy(o => o.date);
+            }
+        }
+
+        public RunResult GetResult(string id)
+        {
+            using (var session = store.Value.OpenSession("test-hangar"))
+            {
+                return session.Query<RunResult>().Single(o => o.id == id);
             }
         }
     }

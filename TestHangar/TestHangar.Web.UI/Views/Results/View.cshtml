@@ -1,0 +1,45 @@
+﻿@model TestHangar.Model.RunResults.RunResult
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/Layout.cshtml";
+    
+}
+
+@{ int imageIndex = 0; }
+
+<h2>RESULTS: @Model.name</h2>
+@Model.date
+
+@foreach (var s in Model.elements)
+{
+    <div class="scenario row">
+        <h3><strong>Scenario: </strong>@s.name</h3>
+        <div class="col-lg-9">
+            <div class="steps">
+                @foreach (var x in s.steps)
+                {
+                    <span class="label label-@x.result.status">@x.result.status</span> <strong>@x.keyword</strong> @x.name<br />
+                    if (!string.IsNullOrEmpty(x.result.error_message))
+                    {
+                        <pre>@x.result.error_message</pre>
+                    }
+                    if (x.embeddings != null && x.embeddings.Length > 0)
+                    {
+                        <a data-toggle="lightbox" href="#demoLightbox" class="thumbnail screenshot">
+                            <img src="data:image/png;base64,@x.embeddings[0].data"/> 
+                        </a>
+                        
+                        <div id="demoLightbox" class="lightbox hide fade"  tabindex="-1" role="dialog" aria-hidden="true">
+	                        <div class="lightbox-content">
+		                        <img src="data:image/png;base64,@x.embeddings[0].data"/> 
+	                        </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+        <div class="col-lg-3 tags">
+        </div>
+    </div>
+}
