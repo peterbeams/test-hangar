@@ -10,5 +10,6 @@ namespace TestHangar.Model
     {
         public List<Feature> Features { get; set; }
         public string Id { get; set; }
+        public string Path { get; set; }
     }
 }

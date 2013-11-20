@@ -92,7 +92,7 @@ namespace TestHangar.Web.UI.Models
             }
         }
 
-        public IEnumerable<TestLibrary> GetTestSuites()
+        public IEnumerable<TestLibrary> GetTestLibraries()
         {
             using (var session = store.Value.OpenSession("test-hangar"))
             {
@@ -123,6 +123,38 @@ namespace TestHangar.Web.UI.Models
                 return session.Query<RunResult>().Single(o => o.id == id);
             }
         }
+
+        public IEnumerable<TestSuite> GetTestSuites()
+        {
+            using (var session = store.Value.OpenSession("test-hangar"))
+            {
+                return session.Query<TestSuite>();
+            }
+        }
+
+        public TestSuite GetTestSuite(string id)
+        {
+            using (var session = store.Value.OpenSession("test-hangar"))
+            {
+                return session.Load<TestSuite>(id);
+            }
+        }
+
+        public TestLibrary GetTestLibrary(string id)
+        {
+            using (var session = store.Value.OpenSession("test-hangar"))
+            {
+                return session.Load<TestLibrary>(id);
+            }
+        }
+    }
+
+    public class TestSuiteViewModel
+    {
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public string Tags { get; set; }
+        public string Library { get; set; }
     }
 
     public class CreateTestSuiteViewModel

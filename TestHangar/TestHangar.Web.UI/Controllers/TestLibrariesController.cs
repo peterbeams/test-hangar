@@ -13,7 +13,14 @@ namespace TestHangar.Web.UI.Controllers
         public ActionResult Index()
         {
             var repo = new ViewModelStore();
-            var model = repo.GetTestSuites();
+            var model = repo.GetTestLibraries();
+            return View(model);
+        }
+
+        public ActionResult Selector()
+        {
+            var repo = new ViewModelStore();
+            var model = repo.GetTestLibraries();
             return View(model);
         }
 
@@ -28,9 +35,9 @@ namespace TestHangar.Web.UI.Controllers
             var reader = new TestSuiteImporter();
             reader.Import(model.Id, model.Path);
             ViewBag.SuccessMessage = "Test Suite Import Successful";
-            var repo = new ViewModelStore();
-            var viewModel = repo.GetTestSuites();
 
+            var repo = new ViewModelStore();
+            var viewModel = repo.GetTestLibraries();
             return View("Index", viewModel);
         }
 

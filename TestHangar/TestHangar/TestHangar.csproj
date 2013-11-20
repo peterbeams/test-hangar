@@ -154,6 +154,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cucumber\CucumberRunner.cs" />
     <Compile Include="Cucumber\RunResultsReader.cs" />
     <Compile Include="Databases\RavenClient.cs" />
     <Compile Include="Gherkin\FeatureFormatter.cs" />

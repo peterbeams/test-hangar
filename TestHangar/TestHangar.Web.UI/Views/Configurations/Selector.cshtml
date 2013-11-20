@@ -1,0 +1,2 @@
+﻿@model System.Collections.Generic.IEnumerable<TestHangar.Model.Configuration>
+@Html.DropDownList("configuration", Model.Select(m => new SelectListItem() { Text = m.Id, Value = m.Id }))

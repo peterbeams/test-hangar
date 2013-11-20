@@ -118,7 +118,6 @@
     <Compile Include="Controllers\TestLibrariesController.cs" />
     <Compile Include="Controllers\ResultsController.cs" />
     <Compile Include="Controllers\RunsController.cs" />
-    <Compile Include="Controllers\TestSuitesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -207,6 +206,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Results\View.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Suites\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Configurations\Selector.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\TestLibraries\Selector.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Suites\Run.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

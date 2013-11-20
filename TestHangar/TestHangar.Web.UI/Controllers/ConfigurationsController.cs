@@ -39,5 +39,11 @@ namespace TestHangar.Web.UI.Controllers
             return View("Index", viewModel);
         }
 
+        public ActionResult Selector()
+        {
+            var repo = new ViewModelStore();
+            var model = repo.GetConfigurations();
+            return View(model);
+        }
     }
 }

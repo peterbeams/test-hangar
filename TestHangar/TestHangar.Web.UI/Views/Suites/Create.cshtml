@@ -1,0 +1,29 @@
+﻿@model TestHangar.Web.UI.Models.TestSuiteViewModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>Create Test Suite</h2>
+
+@using (Html.BeginForm("Create"))
+{
+    <div>
+        @Html.LabelFor(m => m.Id)
+        @Html.EditorFor(m => m.Id)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Name)
+        @Html.EditorFor(m => m.Name)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Tags)
+        @Html.EditorFor(m => m.Tags)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Library)
+        @{ Html.RenderAction("Selector", "TestLibraries");}
+    </div>
+    <input type="submit" value="Create" />
+}

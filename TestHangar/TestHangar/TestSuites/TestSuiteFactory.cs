@@ -18,7 +18,8 @@ namespace TestHangar.TestSuites
 
             raven.Store(new TestLibrary()
                 {
-                    Id = testSuiteId
+                    Id = testSuiteId,
+                    Path = path
                 });
 
             ProcessTestSuite(reader, raven, path, testSuiteId);

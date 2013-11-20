@@ -1,8 +1,41 @@
-﻿@model dynamic
+﻿@model IEnumerable<TestHangar.Model.TestSuite>
 
 @{
     ViewBag.Title = "title";
     Layout = "~/Views/Shared/Layout.cshtml";
 }
 
-<h2>title</h2>
+<h2>Test Suites</h2>
+
+@Html.ActionLink("Create", "Create")
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Tags</th>
+        <th></th>
+    </tr>
+    @foreach (var s in Model)
+    {
+        <tr>
+            <td>@s.Id</td>
+            <td>@s.Name</td>
+            <td>
+                <ul>
+                    @foreach (var t in s.Tags)
+                    {
+                        <li>@t</li>
+                    }
+                </ul>
+            </td>
+            <td>
+                @using (Html.BeginForm("Run", "Suites"))
+                {
+                    <input type="hidden" name="id" value="@s.Id"/>
+                    Html.RenderAction("Selector", "Configurations");
+                    <input type="submit" value="Run" />
+                }
+            </td>
+        </tr>
+    }
+</table>
